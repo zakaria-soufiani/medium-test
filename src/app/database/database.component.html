@@ -1,3 +1,24 @@
-<p>
-  database works!
-</p>
+<h2>Display the contents of the database</h2>
+<br>
+<div>
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Comments</th>
+      <th>Preference</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let person of people" >
+      <td class="vert-align">{{person.lastName}}</td>
+      <td class="vert-align">{{person.firstName}}</td>
+      <td class="vert-align">{{person.email}}</td>
+      <td class="vert-align">{{person.comments}}</td>
+      <td class="vert-align">{{person.options}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,51 +1,83 @@
-<form class="form-horizontal">
+<form class="form-horizontal" #f="ngForm">
   <fieldset>
     <legend>Input information</legend>
+    <p>Do not enter private information as this domain is public and only for learning purposes !</p>
     <div class="form-group">
-      <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
+      <label class="col-lg-2 control-label">First Name</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+        <input type="text" class="form-control" name="inputFirstName"
+               placeholder="First Name" required [(ngModel)]="new_firstName" #FirstName="ngModel">
+        <div *ngIf="FirstName.errors && (FirstName.dirty || FirstName.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!FirstName.errors.required">
+            First Name is required
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <label for="inputLastName" class="col-lg-2 control-label">Last Name</label>
+      <label class="col-lg-2 control-label">Last Name</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+        <input type="text" class="form-control" name="inputLastName"
+               placeholder="Last Name" [(ngModel)]="new_lastName" #LastName="ngModel" required>
+        <div *ngIf="LastName.errors && (LastName.dirty || LastName.touched)" class="alert alert-danger">
+          <div [hidden]="!LastName.errors.required">
+            Last Name is required
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <label class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+        <input type="email" class="form-control" name="inputEmail"
+               placeholder="Email" [(ngModel)]="new_email" #email="ngModel" required>
+        <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+          <div [hidden]="!email.errors.required">
+            Email is required
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <label for="textArea" class="col-lg-2 control-label">Comments</label>
+      <label class="col-lg-2 control-label">Comments</label>
       <div class="col-lg-10">
-        <textarea class="form-control" rows="3" id="textArea"></textarea>
+        <textarea class="form-control" rows="3" name="textArea" [(ngModel)]="new_comments"
+                  #comments="ngModel" placeholder="Enter comments here" required></textarea>
+        <div *ngIf="comments.errors && (comments.dirty || comments.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!comments.errors.required">
+            Comments are required
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-lg-2 control-label">Options</label>
+      <label class="col-lg-2 control-label">I prefer</label>
       <div class="col-lg-10">
         <div class="radio">
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-            Option one
+            <input type="radio" name="optionsRadios" id="optionsRadios1"
+                   value="Spaces" [(ngModel)]="new_options" #radio="ngModel" required>
+            Spaces
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-            Option two
+            <input type="radio" name="optionsRadios" id="optionsRadios2"
+                   value="Tabs" [(ngModel)]="new_options" #radio="ngModel" required>
+            Tabs
           </label>
         </div>
       </div>
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-default" (click)="f.reset()">Cancel</button>
+        <button type="submit" class="btn btn-primary"
+                (click)="createPerson(new_lastName, new_firstName,
+                new_email, new_comments, new_options); f.reset()"
+                [disabled]="!f.form.valid">Submit</button>
       </div>
     </div>
   </fieldset>

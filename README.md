@@ -1,9 +1,9 @@
 # MediumTest
 
-##Angular forms example
+## Angular forms example
 This app is built using angular, AWS Lambda in Python and DynamoDB
 
-##[Live Demo](https://zakaria-soufiani.github.io/medium-test/)
+## [Live Demo](https://zakaria-soufiani.github.io/medium-test/)
 
 You can access the guide that explains how to build an app similar to this one here : 
 * **Part 1**: https://medium.com/@mz.soufiani/basic-angular4-forms-app-with-aws-serverless-backend-in-python-c1b66393885b
